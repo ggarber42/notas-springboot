@@ -1,23 +1,27 @@
 package com.dump.todoList.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
-public class TodoItem {
+public class TodoItem implements Serializable {
 
+    @Id
     private Long id;
     private String title;
-    private String done;
+    private Boolean done;
 
     public TodoItem() {
     }
 
-    public TodoItem(Long id, String title, String done) {
+    public TodoItem(Long id, String title, Boolean done) {
         this.id = id;
         this.title = title;
         this.done = done;
@@ -41,11 +45,11 @@ public class TodoItem {
         this.title = title;
     }
 
-    public String getDone() {
+    public Boolean getDone() {
         return done;
     }
 
-    public void setDone(String done) {
+    public void setDone(Boolean done) {
         this.done = done;
     }
 
